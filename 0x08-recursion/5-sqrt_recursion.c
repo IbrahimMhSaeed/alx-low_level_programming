@@ -1,4 +1,4 @@
-#insqclude "main.h"
+#include "main.h"
 
 
 int square(int n, int val);
