@@ -18,8 +18,8 @@ int main(int argc, char *argv[])
 		return (1);
 	}
 
-	num1 = atio(argv[1]);
-	num2 = atio(argv[2]);
+	num1 = atoi(argv[1]);
+	num2 = atoi(argv[2]);
 
 	mul = num1 * num2;
 
