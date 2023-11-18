@@ -1,8 +1,9 @@
 #include "main.h"
 
 /**
- * factorial - prints
- * @n: string to print
+ * _pow_recursion - prints
+ * @x: string to print
+ * @y: number
  * Return: length;
  */
 
