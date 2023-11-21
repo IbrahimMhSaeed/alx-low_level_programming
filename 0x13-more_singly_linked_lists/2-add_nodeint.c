@@ -2,7 +2,8 @@
 
 /**
  * add_nodeint - print list of numbers
- * @h: pointer to head of list
+ * @head: pointer to head of list
+ * @n: integer number
  * Return: size_t integer returned
  */
 
