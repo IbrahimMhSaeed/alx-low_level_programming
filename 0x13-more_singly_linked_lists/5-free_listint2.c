@@ -1,11 +1,11 @@
 #include "lists.h"
 
 /**
- * free_listint - print list of numbers
+ * free_listint2 - print list of numbers
  * @head: pointer to head of list
  */
 
-void free_listint(listint_t *head)
+void free_listint2(listint_t **head)
 {
 	listint_t *curr;
 
@@ -15,4 +15,6 @@ void free_listint(listint_t *head)
 		head = head->next;
 		free(curr);
 	}
+
+	*head = NULL;
 }
