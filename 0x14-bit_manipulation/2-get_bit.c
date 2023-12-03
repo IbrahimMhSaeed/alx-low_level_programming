@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdbool.h>
 
 /**
  * get_bit: bit at specific index
