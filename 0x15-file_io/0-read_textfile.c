@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * read_textfile: function to read from file
+ * read_textfile - function to read from file and print to stdout
  * @filename: name of file to read
  * @letters: num of letters to read
  * Return: actual size of read file
@@ -9,9 +9,8 @@
 
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	int fd;
+	int fd, sz;
 	char *buf;
-	size_t sz;
 
 	buf = malloc(sizeof(char) * letters);
 
