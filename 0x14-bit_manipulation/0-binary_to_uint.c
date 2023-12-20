@@ -1,6 +1,6 @@
 #include "main.h"
 
-bool checkNum(const char *b);
+int checkNum(const char *b);
 
 /**
  * checkNum - check the code
@@ -8,19 +8,20 @@ bool checkNum(const char *b);
  * Return: True (Success)
  */
 
-bool checkNum(const char *b)
+int checkNum(const char *c)
 {
+	const char *b = c;
 	if (b == NULL)
-		return (false);
+		return (0);
 
-	while (b != NULL)
+	while (*b != '\0')
 	{
-		if (*b != 48 || *b != 49)
-			return (false);
+		if (*b != '1' && *b != '0')
+			return (0);
 		b++;
 	}
-	
-	return (true);
+
+	return (1);
 }
 
 /**
@@ -36,7 +37,8 @@ unsigned int binary_to_uint(const char *b)
 	if (!checkNum(b))
 		return (0);
 
-	while (b != NULL)
+
+	while (*b != '\0')
 	{
 		if (*b == '1')
 		{
