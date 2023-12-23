@@ -9,9 +9,8 @@
 
 int create_file(const char *filename, char *text_content)
 {
-	int fd1, fd2, rd, wr;
+	int fd, rd, wr;
 	ssize_t letters = 0;
-	char *buffer;
 
 	if (filename == NULL)
 		return (-1);
@@ -19,23 +18,12 @@ int create_file(const char *filename, char *text_content)
 	while (text_content[letters] != NULL)
 		letters++;
 
-	buffer = malloc(sizeof(char) * letters);
-
-	fd1 = open(text_content, O_RDONLY);
-	fd2 = open(filename, O_WRONLY|O_CREAT|O_TRUNC 0600);
-	rd = read(fd1, buffer, letters);
-	wr = write(fd2, buffer, rd);
+	fd = open(filename, O_WRONLY|O_CREAT|O_TRUNC 0600);
+	wr = write(fd, text_content, letters);
 
 	if (fd1 == -1 || fd2 == -1 || rd == -1 || wr == -1 || wr != rd)
-	{
-		free(buffer);
-		close(fd1);
-		close(fd2);
 		return (-1);
-	}
 
-	free(buffer);
-	close(fd1);
-	close(fd2);
+	close(fd);
 	return (1);
 }
