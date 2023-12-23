@@ -31,9 +31,9 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	if (rd <= 0)
 		return (0);
 
-	wr = write(STDOUT_FILENO, buffer, rd);
+	wr = write(STDOUT_FILENO, buffer, letters);
 
-	if (wr <= 0)
+	if (wr <= letters)
 		return (0);
 
 	return (wr);
