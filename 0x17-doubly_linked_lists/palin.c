@@ -48,9 +48,9 @@ int main(void)
 	int i, j, ans, max;
 
 	max = -1;
-	for (i = 999; i > 0; i--)
+	for (i = 999; i > 99; i--)
 	{
-		for (j = i; j > 0; j--)
+		for (j = i; j > 99; j--)
 		{
 			ans = i * j;
 			if (check(ans) == 1 && ans > max)
