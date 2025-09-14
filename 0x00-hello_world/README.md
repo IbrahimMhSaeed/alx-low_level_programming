@@ -189,7 +189,7 @@ It enforces formatting rules, naming conventions, and documentation standards.
   if (x > 0) {
       printf("Positive\n");
   }
-```
+  ```
 
 * **Spacing**
 
@@ -340,9 +340,7 @@ Linus’ point is not that *nobody should ever use C++*. His argument is that fo
 
 ---
 
-Perfect 👍 — I’ll create a **new top-level section (`#`)** that explains these commands/functions (`gcc`, `printf(3)`, `puts`, `putchar`) in a way that’s consistent with your README style: short, clear, and with examples.
 
-Here’s the section in Markdown:
 
 # GCC and Common Output Functions
 
