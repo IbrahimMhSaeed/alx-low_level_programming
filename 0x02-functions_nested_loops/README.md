@@ -1,54 +1,179 @@
-# PROJECT 0x02. C - Functions, nested loops
-![image](https://user-images.githubusercontent.com/105258746/189934273-f596e713-d5a1-4ab2-b623-75094e5c9b0e.png)
-#### Nested loop means a loop statement inside another loop statement. That is why nested loops are also called as “loop inside loop"
-`(A nested loop is a loop inside the body of another loop)`
+# C Programming Notes
 
-- Note: The prototypes of all your functions and the prototype of the function _putchar should be included in your header file called main.h
-~ You have to start by creating your `main.h` first. (The resources is below for your reference)
+This document introduces three important topics in C programming: **functions**, **header files**, and **function prototypes**.  
 
-## ** File `main.h` is the header file containing all the function prototypes used in this project... >>>> THIS FILE IS VERY IMPORTANT
+---
 
-#### ==> File: `0-putchar.c` is a program that prints `-putchar`, followed by a new line.
+## 1. Write Function
 
-#### ==> File: `1-alphabet.c` is a function that prints the alphabet, in lowercase, followed by a new line.
+A **function** in C is a block of code designed to perform a specific task. Functions improve code reusability, readability, and maintainability.
 
-#### ==> File: `2-print_alphabet_x10.c` is a function that prints 10 times the alphabet, in lowercase, followed by a new line.
-
-#### ==> File: `3-islower.c` is a function that checks for lowercase character.
-
-#### ==> File: `4-isalpha.c` is a function that checks for alphabetic character.
-
-#### ==> File `5-sign.c` is a function that prints the sign of a number.
-
-#### ==> File `6-abs.c` is a function that computes the absolute value of an integer.
-
-#### ==> File `7-print_last_digit.c` is a function that prints the last digit of a number.
-
-#### ==> File `8-24_hours.c` is a function that prints every minute of the day of Jack Bauer, starting from 00:00 to 23:59.
-
-#### ==> File `10-add.c` is a function that adds two integers and returns the result.
-
-#### ==> File `11-print_to_98.c` is a function that prints all natural numbers from n to 98, followed by a new line.
-```
-File: `_putchar.c` contains the _putchar() function definition.
+### General Syntax
+```c
+return_type function_name(parameter_list) {
+    // body of the function
+    // statements
+    return value;   // if return_type is not void
+}
 ```
 
-## Advanced Task
+### Example
 
-#### ===> File `100-times_table.c` is a function that prints the n times table, starting with 0.
+```c
+#include <stdio.h>
 
-#### ===> File `101-natural.c` is a program that computes and prints the sum of all the multiples of 3 or 5 below 1024 (excluded), followed by a new line.
+// Function definition
+int add(int a, int b) {
+    return a + b;
+}
 
-#### ===> File `102-fibonacci.c` is a program that prints the first 50 Fibonacci numbers, starting with 1 and 2, followed by a new line.
+int main() {
+    int sum = add(5, 10);
+    printf("Sum = %d\n", sum);
+    return 0;
+}
+```
 
-#### ===> File `103-fibonacci.c` is a program that finds and prints the sum of the even-valued terms of the Fibonacci suite under 4000000, followed by a new line.
+**Output:**
 
-#### ===> File `104-fibonacci.c` is a program that finds and prints the first 98 Fibonacci numbers, starting with 1 and 2, followed by a new line.
+```
+Sum = 15
+```
 
-# Resources
-#### Read or watch:
-- [Nested while loops](https://www.youtube.com/watch?v=Z3iGeQ1gIss)
-- [C - Functions](https://www.tutorialspoint.com/cprogramming/c_functions.htm)
-- [Learning to Program in C (Part 06) `stop at 14:00`](https://www.youtube.com/watch?v=qMlnFwYdqIw)
-- [What is the purpose of a function prototype?](https://www.geeksforgeeks.org/what-is-the-purpose-of-a-function-prototype/)
-- [C - Header Files `stop before the “Once-Only Headers” paragraph`](https://www.tutorialspoint.com/cprogramming/c_header_files.htm)
+---
+
+## 2. Header Files in C
+
+The `#include` preprocessor directive is used to include **header files** in a program.
+Header files contain **function declarations, constants, and macros**, which can be reused across multiple programs.
+
+### Types of Header Files
+
+1. **System Header Files** – provided by the C compiler (e.g., `stdio.h`, `math.h`).
+
+   ```c
+   #include <stdio.h>
+   ```
+2. **User-defined Header Files** – created by programmers, usually in the same project directory.
+
+   ```c
+   #include "myheader.h"
+   ```
+
+### Example
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+int main() {
+    char s1[20] = "53875";
+    char s2[10] = "Hello";
+    char s3[10] = "World";
+
+    int res = pow(8, 4);  // from math.h
+    printf("Using math.h, value: %d\n", res);
+
+    long int a = atol(s1);  // from stdlib.h
+    printf("Using stdlib.h, string to int: %ld\n", a);
+
+    strcpy(s2, s3);  // from string.h
+    printf("Using string.h, s2: %s\n", s2);
+
+    return 0;
+}
+```
+
+**Output:**
+
+```
+Using math.h, value: 4096
+Using stdlib.h, string to int: 53875
+Using string.h, s2: World
+```
+
+### Common Standard Header Files
+
+| Header File | Description            | Examples                      |
+| ----------- | ---------------------- | ----------------------------- |
+| stdio.h     | Input/Output functions | `printf()`, `scanf()`, `FILE` |
+| stdlib.h    | General utilities      | `atoi()`, `malloc()`          |
+| math.h      | Math functions         | `sin()`, `pow()`              |
+| string.h    | String functions       | `strcpy()`, `strlen()`        |
+| ctype.h     | Character handling     | `isalpha()`, `isupper()`      |
+| time.h      | Date/time functions    | `asctime()`, `mktime()`       |
+
+---
+
+## 3. Purpose of a Function Prototype
+
+A **function prototype** tells the compiler:
+
+1. The **return type** of the function.
+2. The **number of arguments**.
+3. The **types** of arguments.
+4. The **order** of arguments.
+
+### Syntax
+
+```c
+return_type function_name(parameter_list);
+```
+
+### Example
+
+```c
+#include <stdio.h>
+
+// Function prototype
+void greet();
+
+int main() {
+    greet();  // function call
+    return 0;
+}
+
+// Function definition
+void greet() {
+    printf("Hello, World!\n");
+}
+```
+
+### What if a prototype is missing?
+
+* In **C90**, the compiler assumes return type as `int`.
+* In **C99 and later**, implicit function declarations are not allowed, leading to warnings or errors.
+
+#### Example without prototype
+
+```c
+#include <stdio.h>
+
+int main() {
+    foo(); // called without prototype
+    return 0;
+}
+
+void foo() {
+    printf("foo called\n");
+}
+```
+
+**Compilation Warning (GCC):**
+
+```
+warning: implicit declaration of function ‘foo’
+```
+
+This may cause **undefined behavior**, hence **always use function prototypes**.
+
+---
+
+## Summary
+
+* **Functions** make code modular and reusable.
+* **Header Files** contain reusable declarations and definitions.
+* **Function Prototypes** ensure proper type checking and prevent undefined behavior.
+
