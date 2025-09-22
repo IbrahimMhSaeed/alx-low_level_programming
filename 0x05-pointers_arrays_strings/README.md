@@ -248,6 +248,150 @@ Variable: 100   Address: 0x7ffc62a7b844
 4. **Passing pointers to functions** (pass by reference).
 5. **Returning pointers from functions**.
 
+
+---
+
+#### Passing Pointers to Functions (Different Ways)
+
+```c
+#include <stdio.h>
+
+// Pass pointer to modify a single value
+void increment(int *p) {
+    (*p)++;
+}
+
+```
+
+**Fixed Number of Rows:**
+
+
+```c
+void print_chessboard(char (*a)[8]);
+```
+
+is a **pointer to an array** (specifically, an array of 8 `char`s). This is commonly used for **2D arrays with fixed column size**.
+
+below is an example of Chess board.
+
+---
+
+#### Passing Pointer to Array (2D Array Example)
+
+```c
+#include <stdio.h>
+
+// Function that accepts pointer to array of 8 chars
+void print_chessboard(char (*board)[8], int rows) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < 8; j++) {
+            printf("%c ", board[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    // Initialize an 8x8 chessboard
+    char chessboard[8][8] = {
+        {'R','N','B','Q','K','B','N','R'},
+        {'P','P','P','P','P','P','P','P'},
+        {' ',' ',' ',' ',' ',' ',' ',' '},
+        {' ',' ',' ',' ',' ',' ',' ',' '},
+        {' ',' ',' ',' ',' ',' ',' ',' '},
+        {' ',' ',' ',' ',' ',' ',' ',' '},
+        {'p','p','p','p','p','p','p','p'},
+        {'r','n','b','q','k','b','n','r'}
+    };
+
+    // Pass chessboard to function
+    print_chessboard(chessboard, 8);
+
+    return 0;
+}
+```
+
+---
+
+✅ **Explanation:**
+
+1. `char (*board)[8]` means:
+
+   * `board` is a pointer to an array of 8 `char`s.
+   * This is useful for **2D arrays where the number of columns is fixed**.
+
+2. `chessboard` (2D array) decays to a pointer to its first row (`char (*)[8]`) when passed to the function.
+
+3. The function can then iterate row by row and column by column safely.
+
+---
+
+💡 **Note:** This method is **better than `char **`** for fixed-size 2D arrays because memory is contiguous, making it safer and faster.
+
+
+#### Pointer to Function
+
+```c
+#include <stdio.h>
+
+// Function that matches the pointer type
+int add(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    // Pointer to function
+    int (*funcPtr)(int, int) = &add;
+
+    // Call the function using the pointer
+    int result = funcPtr(5, 3);
+    printf("Result using pointer to function: %d\n", result);
+
+    return 0;
+}
+```
+
+---
+
+#### Pointer Pointing to Function (Passing Function Pointer)
+
+```c
+#include <stdio.h>
+
+// Functions to be pointed to
+int multiply(int a, int b) {
+    return a * b;
+}
+
+int subtract(int a, int b) {
+    return a - b;
+}
+
+// Function that accepts a function pointer as argument
+void operate(int (*operation)(int, int), int x, int y) {
+    int result = operation(x, y);
+    printf("Operation Result: %d\n", result);
+}
+
+int main() {
+    // Pass pointer to multiply function
+    operate(&multiply, 6, 4);
+
+    // Pass pointer to subtract function
+    operate(&subtract, 10, 3);
+
+    return 0;
+}
+```
+
+---
+
+**Explanation:**
+
+1. **Pointer to Function:** Stores the address of a function and allows calling it through the pointer.
+2. **Pointer Pointing to Function (Function Pointer as Parameter):** Lets you pass functions as arguments to other functions, enabling dynamic behavior.
+
+
 ---
 
 ## Strings in C
