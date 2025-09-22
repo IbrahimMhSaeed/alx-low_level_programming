@@ -1,8 +1,114 @@
 # C Programming Notes
 
-This document introduces three important topics in C programming: **functions**, **header files**, and **function prototypes**.  
+This document introduces three important topics in C programming:  
+**1. The `write()` Function in C**  
+**2. Header Files in C**  
+**3. Function Prototypes in C**  
 
 ---
+
+## 0. The `write()` Function in C
+
+The `write()` function is a **system call** in C that allows you to write data directly to a file descriptor.  
+It is declared in the **`unistd.h`** header file and is commonly used for **low-level I/O operations**.
+
+### Syntax
+```c
+ssize_t write(int fd, const void *buf, size_t count);
+````
+
+### Parameters
+
+1. **`fd` (file descriptor)**
+
+   * An integer that identifies the file where data will be written.
+   * Examples:
+
+     * `0` → Standard Input (stdin)
+     * `1` → Standard Output (stdout)
+     * `2` → Standard Error (stderr)
+
+2. **`buf` (buffer)**
+
+   * A pointer to the data that will be written.
+   * Usually a string or array.
+
+3. **`count` (number of bytes)**
+
+   * The number of bytes from the buffer to write.
+
+### Return Value
+
+* On success → returns the **number of bytes written**.
+* On error → returns `-1` and sets `errno`.
+
+---
+
+### Example 1: Writing to Standard Output
+
+```c
+#include <unistd.h>
+
+int main() {
+    char msg[] = "Hello using write()!\n";
+    write(1, msg, 21);  // 1 = stdout, 21 = number of bytes
+    return 0;
+}
+```
+
+**Output:**
+
+```
+Hello using write()!
+```
+
+---
+
+### Example 2: Writing to a File
+
+```c
+#include <fcntl.h>   // for open()
+#include <unistd.h>  // for write() and close()
+
+int main() {
+    int fd;
+    char data[] = "This is written using write().\n";
+
+    // open file for writing (create if not exists, truncate if exists)
+    fd = open("output.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+
+    if (fd < 0) {
+        write(2, "Error opening file\n", 19); // write to stderr
+        return 1;
+    }
+
+    // write data to the file
+    write(fd, data, sizeof(data) - 1);
+
+    // close the file
+    close(fd);
+
+    return 0;
+}
+```
+
+This will create a file `output.txt` containing:
+
+```
+This is written using write().
+```
+
+---
+
+### Key Notes
+
+* `write()` works at the **system call level**, unlike `printf()` which is a **library function** from `stdio.h`.
+* It gives more **control over low-level I/O**.
+* It does **not automatically add a null terminator (`\0`)**. You must specify the exact number of bytes to write.
+
+---
+
+
 
 ## 1. Write Function
 
