@@ -250,22 +250,15 @@ Variable: 100   Address: 0x7ffc62a7b844
 
 ---
 
-Got it ✅
-We’ll add two new sections to your README:
-
-1. **Strings in C** (summary version of the long text you provided).
-2. **Memory Layout in C** (based on the link you gave, summarized).
-
-Here’s the draft update:
-
-````markdown
 ## Strings in C
+
 
 A **string** in C is a one-dimensional array of `char` values, terminated by the **null character** `'\0'`.  
 Example:  
 ```c
 char greeting[6] = {'H', 'e', 'l', 'l', 'o', '\0'};
-````
+```
+![String stored in memory](https://www.tutorialspoint.com/cprogramming/images/string_representation.jpg)
 
 ### Creating and Initializing Strings
 
