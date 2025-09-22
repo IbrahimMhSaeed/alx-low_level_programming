@@ -288,6 +288,138 @@ printf("%s\n", greeting);   // Output: Hello World
 * `fgets(str, size, stdin)` → recommended, supports spaces.
 * `scanf("%[^\n]s", str)` → alternative way to read until newline.
 
+
+---
+
+#### 1. Using `scanf("%s", str)`
+
+Reads input **until a whitespace** (space, tab, newline).
+
+```c
+#include <stdio.h>
+
+int main() {
+    char str[20];
+
+    printf("Enter a word: ");
+    scanf("%s", str);   // stops at whitespace
+
+    printf("You entered: %s\n", str);
+    return 0;
+}
+```
+
+**Input:**
+
+```
+Hello World
+```
+
+**Output:**
+
+```
+You entered: Hello
+```
+
+---
+
+#### 2. Using `gets(str)` (⚠️ Deprecated / Unsafe)
+
+Reads a full line including spaces, but unsafe (can cause buffer overflow).
+
+```c
+#include <stdio.h>
+
+int main() {
+    char str[20];
+
+    printf("Enter a line: ");
+    gets(str);   // unsafe!
+
+    printf("You entered: %s\n", str);
+    return 0;
+}
+```
+
+**Input:**
+
+```
+Hello World
+```
+
+**Output:**
+
+```
+You entered: Hello World
+```
+
+---
+
+#### 3. Using `fgets(str, size, stdin)` ✅ (Recommended)
+
+Safe alternative — reads up to `size-1` characters and includes spaces.
+
+```c
+#include <stdio.h>
+
+int main() {
+    char str[20];
+
+    printf("Enter a line: ");
+    fgets(str, sizeof(str), stdin);
+
+    printf("You entered: %s\n", str);
+    return 0;
+}
+```
+
+**Input:**
+
+```
+Hello World
+```
+
+**Output:**
+
+```
+You entered: Hello World
+```
+
+*(Note: `fgets` keeps the trailing newline `\n` unless buffer is full.)*
+
+---
+
+#### 4. Using `scanf("%[^\n]s", str)`
+
+Reads input until a **newline** (`\n`) is encountered.
+
+```c
+#include <stdio.h>
+
+int main() {
+    char str[20];
+
+    printf("Enter a line: ");
+    scanf("%[^\n]s", str);   // reads until newline
+
+    printf("You entered: %s\n", str);
+    return 0;
+}
+```
+
+**Input:**
+
+```
+Hello World
+```
+
+**Output:**
+
+```
+You entered: Hello World
+```
+
+
 ### String Output
 
 * `printf("%s", str)` → common way.
@@ -296,9 +428,6 @@ printf("%s\n", greeting);   // Output: Hello World
 
 ---
 
-Perfect 👍 Let’s expand the **Memory Layout in C** section into more detail so it feels like a full reference.
-
----
 
 ## Memory Layout in C
 
