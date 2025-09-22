@@ -433,6 +433,10 @@ You entered: Hello World
 
 When a C program is compiled and executed, it is loaded into memory and divided into **different segments**. Each segment has a specific purpose and set of rules (read-only, writable, auto-managed, or manual). Understanding this is crucial for debugging, optimization, and preventing issues like segmentation faults.
 
+Each segment of C code has its own read,write, execute permissions that is set by the operationg system & compiler. if a program tries to access a memory in a way that's not allowed a **Segmentation fault** occurs.
+
+**Segmentation fault**: common problem causes the program to crash. A core dumped file is associated with this fault to help the programmer know the root of the problem.
+
 ---
 
 ### 1. Text Segment (Code Section)
@@ -526,10 +530,23 @@ void foo() {
 |  (local vars, return    |
 |   addresses, frames)    |
 +-------------------------+
+.			  .
+.	    |		  .
+	    v
+
+
+.	  Empty		  .
+
+
+	    ^
+	    |
+.			  .
+.			  .
++-------------------------+
 |         Heap            |  <- grows upward
 |  (dynamic allocation)   |
 +-------------------------+
-|   BSS Segment (0-init)  |
+|   BSS Segment (0-init)  | Uninitialized data segment
 +-------------------------+
 | Initialized Data Segment|
 +-------------------------+
