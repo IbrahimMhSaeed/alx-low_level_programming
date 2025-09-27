@@ -3,7 +3,7 @@
 
 /**
  * main - entry point
- * @argc: describe this 
+ * @argc: describe this
  * @argv: describe this
  * Return: 0 (success)
  */
